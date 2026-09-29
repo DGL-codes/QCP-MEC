@@ -1,0 +1,259 @@
+{
+  "review_date": "2026-09-29",
+  "input_archive_sha256": "e66f5e17841475bfe1dd64335a0875e67b450a55444b54525aba37d089e0a620",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "matplotlib": "3.10.8"
+  },
+  "original_pinned_dependency_installation_verified": false,
+  "full_experiment_policy_runs": 363,
+  "original_reference_csv_files_checked": 20,
+  "numeric_atol": 1e-06,
+  "numeric_rtol": 1e-06,
+  "maximum_numeric_absolute_difference": 4.547473508864641e-13,
+  "original_reference_comparison": "passed",
+  "full_experiment_exit_codes": {
+    "arrival": 0,
+    "reputation": 0,
+    "deposit": 0,
+    "ablation": 0,
+    "reservation": 0,
+    "lyapunov": 0
+  },
+  "release_quick_policy_runs": 121,
+  "release_quick_figures": 8,
+  "original_vs_reviewed_generated_png_byte_comparison": {
+    "figures": 8,
+    "passed": true,
+    "note": "Same runtime; original full trace vs compact-data fallback. Bundled historical PNGs remain unchanged."
+  },
+  "unchanged_core_sha256": {
+    "config.py": "a1433873c656489cc8f49ad9f3f48547868bbb954ca9db30ce9d2ebb02eab508",
+    "models.py": "eacba6bcd282ab29ae96857dc5e88eb36fab9c63cda6920529b659ce3b86e0d6",
+    "policies.py": "b9c068cdd615ca80ed373b42b6f260d4d323a6f6e7592b30bb351ddb02a7ed3d",
+    "simulator.py": "4af1492bbff7a07f7b01b52dc3061dc0a2d58d800e86d3fcbec320afcf83b56a",
+    "__init__.py": "9464bc850f5e90687124154f8db8a990cfaf97141ab5e0e1bb235faa24dd9eff"
+  },
+  "original_reference_csv_sha256": {
+    "ablation_overall_scores.csv": "c8ee0bd09e3a8bd06c4db826ebcf73bf4fd95f2907694c64a72d67b6b0083773",
+    "ablation_raw.csv": "c10d21711b75f959c72ed581da3fadab6d9856eab2c8f464b81ada8f213df118",
+    "ablation_std.csv": "686e246aca858c4599ae182edacf8aeb0f5876459d59ff8a1f6375a1e3b5dd37",
+    "ablation_summary.csv": "62d495d5bc779a1064089fae537f8d43ade902dd513fbe0a4e118a062512470c",
+    "arrival_sweep_raw.csv": "e2ac727bfb0ef32e888122fc7b79e891b8476f0d77130c80da48ee6626f7350d",
+    "arrival_sweep_summary.csv": "7076f17ae1533fdbae06c95d9c1d33fe45e97b8cd697715d777c95299c0fbca7",
+    "default_overall_scores.csv": "fb9ad8f590ab9f623a0d96fcf4198e166a2e6585c230d5d5ae9dedee173afc7c",
+    "deposit_sweep_raw.csv": "b1b331a693a32c1adf790996130c13ec426e37746116689dba155139832d427c",
+    "deposit_sweep_summary.csv": "2b8b5c5d730ad99c356dfa170df56cf4b5abb2b64ce6659732afbb0baaba3ceb",
+    "lyapunov_sweep_raw.csv": "83cbc114d9eee2dee231c32d91fed86e248a0be4abdd2b5d33471d7832d46a92",
+    "lyapunov_sweep_std.csv": "b8f4363925a37f8167eaedd77ba734631ece066c2a991eba1370a1c38e25097e",
+    "lyapunov_sweep_summary.csv": "6aaae315cd74bebf1938740219f2d116bd489bb3767b4344ca2eee070ebc5207",
+    "reputation_sweep_raw.csv": "fa14b8c536199df3236a15b0b9e31708896218fc76aaeab7091e3bcb59658a70",
+    "reputation_sweep_summary.csv": "6b280373fe80bf411bae994c16a259ded59e91df1ecabc9b357738fc0ef546b0",
+    "reservation_sweep_raw.csv": "05757ed50ce098dd67e5d7841871ff53d33b63ff71f2cf783e6584200eb9e2de",
+    "reservation_sweep_std.csv": "4df8f06605dd89cdaab067a395602fdcea793da09ba1a66ea57099438ece8384",
+    "reservation_sweep_summary.csv": "6261e66f02895b80255fab498a2c790d458ba5122f0d7910b8a96208408e0a17",
+    "single_summary.csv": "5d7e289d22c84c38440efe4430a8e2350278805eaa7a8566167d89d1bfc57457",
+    "single_summary_raw.csv": "15a5299c99b0429d485adcd359a3348ded7040884cfbcc047ac6ee31eb4428fc",
+    "single_summary_std.csv": "791252f4cb55d6c4db03635a0816302adc18699d2d696de4414d930790ab823d"
+  },
+  "behavioral_checks": {
+    "status": "passed",
+    "config": {
+      "seed": 7,
+      "num_users": 50,
+      "num_servers": 5,
+      "time_slots": 180,
+      "warmup_slots": 15,
+      "arrival_rate": 0.8,
+      "slot_duration": 1.0,
+      "data_size_mb_range": [
+        0.5,
+        10.0
+      ],
+      "cpu_cycles_range": [
+        200000000.0,
+        2000000000.0
+      ],
+      "tau_ms_range": [
+        150.0,
+        1800.0
+      ],
+      "priority_levels": 3,
+      "local_cpu_hz_range": [
+        500000000.0,
+        1500000000.0
+      ],
+      "server_cpu_hz_range": [
+        5000000000.0,
+        20000000000.0
+      ],
+      "user_tx_power_w_range": [
+        0.2,
+        1.0
+      ],
+      "kappa_range": [
+        8e-28,
+        2.5e-27
+      ],
+      "bandwidth_hz": 10000000.0,
+      "noise_power_w": 1e-10,
+      "distance_m_range": [
+        40.0,
+        350.0
+      ],
+      "rate_error_sigma": 0.1,
+      "actual_delay_jitter_sigma": 0.08,
+      "initial_user_rep_range": [
+        0.5,
+        0.9
+      ],
+      "initial_server_rep_range": [
+        0.6,
+        0.95
+      ],
+      "low_reputation_ratio": 0.2,
+      "low_reputation_range": [
+        0.1,
+        0.45
+      ],
+      "user_rep_eta": 0.08,
+      "server_rep_eta": 0.06,
+      "price_delay": 0.15,
+      "price_energy": 0.08,
+      "price_resource": 0.055,
+      "price_risk": 0.08,
+      "price_server_discount": 0.025,
+      "fixed_price_per_gcycle": 0.07,
+      "fixed_price_per_mb": 0.006,
+      "broker_commission_rate": 0.18,
+      "server_cost_per_gcycle": 0.04,
+      "server_load_cost": 0.015,
+      "settlement_alpha_delay": 0.18,
+      "settlement_alpha_energy": 0.1,
+      "settlement_sla_penalty_rate": 0.22,
+      "settlement_lower_mult": 0.75,
+      "settlement_upper_mult": 1.25,
+      "min_deposit": 0.015,
+      "deposit_price_coeff": 0.45,
+      "deposit_risk_coeff": 0.24,
+      "high_rep_threshold": 0.72,
+      "credit_limit_range": [
+        0.25,
+        1.2
+      ],
+      "default_base_prob": 0.02,
+      "default_rep_sensitivity": 0.28,
+      "default_uncovered_sensitivity": 0.45,
+      "server_failure_base_prob": 0.01,
+      "server_failure_rep_sensitivity": 0.12,
+      "value_base": 0.55,
+      "value_priority_step": 0.2,
+      "value_noise_sigma": 0.08,
+      "user_delay_cost": 0.24,
+      "user_energy_cost": 0.05,
+      "acceptance_temperature": 0.1,
+      "objective_delay_weight": 1.2,
+      "objective_energy_weight": 0.25,
+      "objective_settlement_weight": 0.6,
+      "objective_risk_weight": 1.35,
+      "objective_utility_weight": 0.4,
+      "objective_sla_weight": 2.0,
+      "objective_reputation_weight": 0.35,
+      "proposed_price_multiplier": 0.4,
+      "proposed_energy_weight_multiplier": 5.0,
+      "proposed_utility_weight_multiplier": 0.25,
+      "proposed_sla_weight_multiplier": 1.15,
+      "proposed_reservation_delay_factor": 0.58,
+      "proposed_reservation_min_factor": 0.5,
+      "proposed_reservation_max_factor": 0.92,
+      "proposed_reservation_capacity_fraction": 0.35,
+      "proposed_reservation_cost_per_gcycle": 0.01,
+      "lyapunov_v": 8.0,
+      "sla_violation_budget": 0.08,
+      "risk_budget_per_task": 0.015,
+      "settlement_budget_per_task": 0.02,
+      "max_server_queue_s": 3.0
+    },
+    "policy_counts": {
+      "QCP": {
+        "accepted_edge": 5650,
+        "defaulted": 370,
+        "positive_bad_debt": 321,
+        "covered_defaults": 49
+      },
+      "DP-MEC": {
+        "accepted_edge": 4937,
+        "defaulted": 0,
+        "positive_bad_debt": 0,
+        "covered_defaults": 0
+      },
+      "Stackelberg-EPRA": {
+        "accepted_edge": 5007,
+        "defaulted": 0,
+        "positive_bad_debt": 0,
+        "covered_defaults": 0
+      },
+      "TARFO": {
+        "accepted_edge": 4890,
+        "defaulted": 0,
+        "positive_bad_debt": 0,
+        "covered_defaults": 0
+      },
+      "DoubleAuction": {
+        "accepted_edge": 4736,
+        "defaulted": 0,
+        "positive_bad_debt": 0,
+        "covered_defaults": 0
+      },
+      "DRL-Offloading": {
+        "accepted_edge": 5468,
+        "defaulted": 0,
+        "positive_bad_debt": 0,
+        "covered_defaults": 0
+      },
+      "NoReputation": {
+        "accepted_edge": 5870,
+        "defaulted": 630,
+        "positive_bad_debt": 629,
+        "covered_defaults": 1
+      },
+      "Ablation-NoReservation": {
+        "accepted_edge": 5188,
+        "defaulted": 336,
+        "positive_bad_debt": 292,
+        "covered_defaults": 44
+      },
+      "Ablation-NoDeposit": {
+        "accepted_edge": 5652,
+        "defaulted": 465,
+        "positive_bad_debt": 465,
+        "covered_defaults": 0
+      },
+      "Ablation-NoPostSettlement": {
+        "accepted_edge": 5642,
+        "defaulted": 0,
+        "positive_bad_debt": 0,
+        "covered_defaults": 0
+      },
+      "Ablation-NoVirtualQueues": {
+        "accepted_edge": 5601,
+        "defaulted": 371,
+        "positive_bad_debt": 332,
+        "covered_defaults": 39
+      }
+    },
+    "checks": [
+      "common exogenous inputs",
+      "reservation limits",
+      "deposit limits",
+      "settlement bounds",
+      "accounting identities",
+      "prepaid zero default loss",
+      "reputation range",
+      "finite outputs",
+      "virtual queue recurrences"
+    ]
+  }
+}
