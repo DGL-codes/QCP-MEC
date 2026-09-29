@@ -2,8 +2,8 @@
 
 This document describes the code's implemented semantics. Equation and figure
 numbers refer to the 17-page revised manuscript supplied for the September 29,
-2026 review. The original configuration, policy, model, and simulator files
-are unchanged in the reviewed release.
+2026 review. The original simulation parameters, decision rules, system model,
+and simulator are preserved. Policy identifiers use the manuscript's names.
 
 ## Mapping to the manuscript
 
@@ -85,10 +85,10 @@ should not be interpreted as controlled single-user causal experiments.
 | Social welfare | Average user utility + average broker utility, as explicitly defined in the manuscript. |
 | `completed` in trace CSV | A settled execution attempt, including an edge execution failure. It is not an execution-success flag; SLA also checks success. |
 
-The CSV identifier `DRL-Offloading` denotes the deterministic Delay-Energy
-heuristic. It is retained for historical result compatibility. No neural model
-is trained. The four pricing/auction proxies do not reproduce the original
-cited algorithms or inherit their equilibrium/truthfulness properties.
+`Delay-Energy` denotes the deterministic delay-energy heuristic in the code,
+CSV outputs, and figures. It uses the `delay_energy_heuristic` flag and requires
+no policy training. The four literature-inspired pricing/auction schemes use
+the implementation rules listed in [IMPLEMENTATION_AUDIT.md](IMPLEMENTATION_AUDIT.md).
 
 ## Figure 6: payment-discipline data
 
@@ -155,3 +155,12 @@ The original pinned dependency installation could not be exercised using the
 review environment's available package source. All reported executions used
 Python 3.12.14, NumPy 2.3.5, pandas 2.2.3, and Matplotlib 3.10.8. They required
 no external data or network requests. The existing pins remain unchanged.
+
+After aligning policy identifiers with the manuscript, the full default
+experiment was rerun (600 slots, three repetitions, seven policies). Its five
+summary, repetition-level, score, and payment-discipline CSVs matched the
+updated references at `atol=rtol=1e-6`. All 21 reference CSVs preserve the
+original numerical text; only the relevant policy labels changed. The eight
+figures generated before and after the update were byte-identical under the
+same runtime. The policy syntax trees are also identical after identifier
+normalization, confirming that this update preserves the decision rules.

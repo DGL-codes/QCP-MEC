@@ -28,33 +28,16 @@ pressure increase.
 - `docs/REPRODUCIBILITY.md`: exact metric definitions, parameter mappings,
   figure inputs, and interpretation of the reputation ablation.
 
-## Fairness Notes
+## Evaluation Protocol
 
-- `QCP` denotes the proposed method with reputation-aware quotation, deposit
-  reservation, post-service settlement, adaptive lightweight reserved-service
-  acceleration, and Lyapunov virtual queues.
-- The comparison includes four literature-inspired proxy baselines:
-  `DP-MEC`, `Stackelberg-EPRA`, `TARFO`, and `DoubleAuction`. Their pricing
-  and selection rules are adapted to the common MEC simulator; they are not
-  reproductions of the cited algorithms.
-- `Delay-Energy` is a deterministic heuristic without policy training. It
-  selects the local or edge option minimizing estimated
-  `delay / deadline + 0.25 * energy` and uses fixed pre-service pricing.
-- All five baselines use pre-service settlement and therefore do not incur
-  post-service payment default loss.
-- Common random numbers are used for arrivals, task attributes, and channels so
-  policies face the same environmental sample paths in each repetition.
-
-## Naming Compatibility
-
-The paper and figure labels use `Delay-Energy`, short for the Delay-Energy
-heuristic. The legacy identifiers `DRL-Offloading` and `drl_offloading` are
-retained for code and result-file compatibility. They do not denote a trained
-DRL policy.
-
-The `DISPLAY_NAMES` mapping in `plot_publication_figures.py` converts the legacy
-CSV policy label to `Delay-Energy` when drawing legends and heatmap labels.
-Keep the existing CSV identifiers and numerical values when replotting.
+Following the paper, QCP is evaluated alongside literature-inspired pricing
+and selection schemes (`DP-MEC`, `Stackelberg-EPRA`, `TARFO`, and
+`DoubleAuction`), the deterministic `Delay-Energy` heuristic, and QCP ablations.
+The schemes are implemented within a common MEC simulation framework, with
+shared task arrivals, task attributes, channel samples, and resource
+initialization. The five non-QCP baselines use pre-service payment; QCP uses
+QoS-contingent post-service settlement. Implementation details are summarized
+in [docs/IMPLEMENTATION_AUDIT.md](docs/IMPLEMENTATION_AUDIT.md).
 
 ## Setup
 
@@ -209,9 +192,16 @@ matched all 20 original reference CSVs. The review used Python 3.12.14,
 NumPy 2.3.5, pandas 2.2.3, and Matplotlib 3.10.8. This is an additional
 verified environment, distinct from the original pinned dependency set.
 Installation of that original pinned set was not verified in the restricted
-review package source. The simulation configuration, policies, and simulator
-are unchanged in the reviewed release; the additions concern reporting,
+review package source. The simulation configuration and numerical decision
+rules are unchanged. Policy identifiers, CSV labels, and figure labels
+consistently use the paper's method names, including `Delay-Energy` and its
+`delay_energy_heuristic` flag. Other release updates concern reporting,
 documentation, argument validation, and comparison ordering.
+
+After the naming update, the full default experiment (21 policy simulations)
+again matched all five associated reference CSVs at `atol=rtol=1e-6`.
+All 21 reference CSVs retain their numerical values, and the eight figures
+generated before and after the update are identical in the same environment.
 
 See `docs/REPRODUCIBILITY.md` for the detailed interpretation and reproduction
 mapping. Publication metadata and a reuse license can be added by the authors

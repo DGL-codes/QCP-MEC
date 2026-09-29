@@ -41,14 +41,14 @@ def check_baselines(policies: dict[str, object]) -> None:
         "Stackelberg-EPRA": "stackelberg_pricing",
         "TARFO": "truthful_auction",
         "DoubleAuction": "double_auction",
-        "DRL-Offloading": "drl_offloading",
+        "Delay-Energy": "delay_energy_heuristic",
     }
     for name, flag in expected_flags.items():
         policy = policies[name]
         require(isinstance(policy, BrokerPolicy), f"{name} must use BrokerPolicy")
         check_pre_service_baseline(policy, flag)
-    doda = policies["DRL-Offloading"]
-    require(doda.delay_energy_only, "DRL-Offloading must use delay-energy-oriented scoring")
+    delay_energy = policies["Delay-Energy"]
+    require(delay_energy.delay_energy_only, "Delay-Energy must use delay-energy-oriented scoring")
 
     no_rep = policies["NoReputation"]
     require(isinstance(no_rep, ProposedLyapunovPolicy), "NoReputation must keep QCP policy structure")
@@ -94,7 +94,7 @@ def main() -> None:
         "Stackelberg-EPRA",
         "TARFO",
         "DoubleAuction",
-        "DRL-Offloading",
+        "Delay-Energy",
         "NoReputation",
     }
     require(set(policies) == expected_names, "Default policy set is inconsistent with the paper")

@@ -35,7 +35,7 @@ POLICY_ORDER = [
     "Stackelberg-EPRA",
     "TARFO",
     "DoubleAuction",
-    "DRL-Offloading",
+    "Delay-Energy",
     "NoReputation",
 ]
 
@@ -45,7 +45,7 @@ COLORS = {
     "Stackelberg-EPRA": "#72B7B2",
     "TARFO": "#59A14F",
     "DoubleAuction": "#F28E2B",
-    "DRL-Offloading": "#B07AA1",
+    "Delay-Energy": "#B07AA1",
     "NoReputation": "#7F7F7F",
     "Ablation-NoReservation": "#4C78A8",
     "Ablation-NoDeposit": "#59A14F",
@@ -59,7 +59,7 @@ MARKERS = {
     "Stackelberg-EPRA": "^",
     "TARFO": "D",
     "DoubleAuction": "P",
-    "DRL-Offloading": "X",
+    "Delay-Energy": "X",
     "NoReputation": "v",
 }
 
@@ -69,13 +69,8 @@ LINESTYLES = {
     "Stackelberg-EPRA": "-.",
     "TARFO": ":",
     "DoubleAuction": (0, (4, 1.5, 1, 1.5)),
-    "DRL-Offloading": (0, (5, 2)),
+    "Delay-Energy": (0, (5, 2)),
     "NoReputation": (0, (2, 1.4)),
-}
-
-# Display names are separate from policy identifiers stored in CSV files.
-DISPLAY_NAMES = {
-    "DRL-Offloading": "Delay-Energy",
 }
 
 METRIC_LABELS = {
@@ -255,7 +250,7 @@ def plot_spotlight_lines(
                 markeredgecolor=COLORS[policy],
                 markeredgewidth=1.15 if is_prop else 0.8,
                 alpha=1.0 if is_prop else 0.46,
-                label=DISPLAY_NAMES.get(policy, policy),
+                label=policy,
                 zorder=5 if is_prop else 2,
             )
             if is_prop:
@@ -354,7 +349,7 @@ def plot_metric_lines_on_axis(
             markeredgecolor=COLORS[policy],
             markeredgewidth=1.05 if is_prop else 0.72,
             alpha=1.0 if is_prop else 0.48,
-            label=DISPLAY_NAMES.get(policy, policy),
+            label=policy,
             zorder=5 if is_prop else 2,
         )
     prop = df[df["policy"] == PROPOSED].sort_values(x_col)
@@ -444,7 +439,7 @@ def plot_reputation_bars(df: pd.DataFrame, metrics: Iterable[str]) -> None:
                 x + offset,
                 values,
                 width=width,
-                label=DISPLAY_NAMES.get(policy, policy),
+                label=policy,
                 color=COLORS[policy],
                 alpha=0.96 if is_prop else 0.52,
                 edgecolor="#FFFFFF" if is_prop else "#E6E8EF",
@@ -484,7 +479,7 @@ def plot_reputation_grid(df: pd.DataFrame, metrics: List[str], output_name: str)
                 x + offset,
                 values,
                 width=width,
-                label=DISPLAY_NAMES.get(policy, policy),
+                label=policy,
                 color=COLORS[policy],
                 alpha=0.96 if is_prop else 0.52,
                 edgecolor="#FFFFFF" if is_prop else "#E6E8EF",
@@ -544,7 +539,7 @@ def plot_payment_discipline_summary(trace: pd.DataFrame) -> None:
                 markeredgecolor=color,
                 markeredgewidth=1.1,
                 alpha=1.0 if is_prop else 0.72,
-                label=DISPLAY_NAMES.get(policy, policy),
+                label=policy,
                 zorder=4 if is_prop else 3,
             )
             if is_prop:
@@ -609,7 +604,7 @@ def plot_advantage_heatmap(single: pd.DataFrame) -> None:
     )
     ax.set_yticks(np.arange(len(scores)))
     ax.set_yticklabels(
-        [DISPLAY_NAMES.get(p, p) for p in scores.index],
+        scores.index.tolist(),
         fontsize=8.5,
     )
     for i, policy in enumerate(scores.index):
@@ -659,7 +654,7 @@ def plot_radar(single: pd.DataFrame) -> None:
             linewidth=2.8 if is_prop else 1.05,
             linestyle=LINESTYLES.get(policy, "-"),
             alpha=1.0 if is_prop else 0.42,
-            label=DISPLAY_NAMES.get(policy, policy),
+            label=policy,
         )
         ax.fill(angles, vals, color=COLORS[policy], alpha=0.16 if is_prop else 0.035)
     ax.set_xticks(angles[:-1])

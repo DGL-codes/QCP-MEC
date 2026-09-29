@@ -59,7 +59,7 @@ class BrokerPolicy(Policy):
         stackelberg_pricing: bool = False,
         truthful_auction: bool = False,
         double_auction: bool = False,
-        drl_offloading: bool = False,
+        delay_energy_heuristic: bool = False,
         delay_energy_only: bool = False,
         prepaid: bool = False,
         score_label: Optional[str] = None,
@@ -72,7 +72,7 @@ class BrokerPolicy(Policy):
         self.stackelberg_pricing = stackelberg_pricing
         self.truthful_auction = truthful_auction
         self.double_auction = double_auction
-        self.drl_offloading = drl_offloading
+        self.delay_energy_heuristic = delay_energy_heuristic
         self.delay_energy_only = delay_energy_only
         self.prepaid = prepaid
         if score_label:
@@ -180,7 +180,7 @@ class BrokerPolicy(Policy):
         rho, psi = self._effective_reps(task, server, ctx)
         data_component = cfg.fixed_price_per_mb * task.data_mb
         resource_component = cfg.price_resource * (task.cycles / 1.0e9)
-        if self.fixed_pricing or self.drl_offloading:
+        if self.fixed_pricing or self.delay_energy_heuristic:
             return max(0.001, cfg.fixed_price_per_gcycle * (task.cycles / 1.0e9) + data_component)
         load_factor = ctx.server_state.backlog_cycles[server] / max(ctx.server_state.cpu_hz[server], 1.0)
         normalized_load = min(load_factor / 1.5, 1.0)
@@ -273,7 +273,7 @@ class BrokerPolicy(Policy):
         expected_utility: float,
         ctx: SlotContext,
     ) -> float:
-        if self.delay_energy_only or self.drl_offloading:
+        if self.delay_energy_only or self.delay_energy_heuristic:
             return float(delay / task.tau_s + 0.25 * energy)
         if self.truthful_auction:
             ask = 0.0 if server == LOCAL_SERVER else self._server_payment(task, server, ctx, estimated=True)
@@ -338,7 +338,7 @@ class BrokerPolicy(Policy):
                 "subsidy_loss": 0.0,
             }
 
-        if self.fixed_pricing or self.drl_offloading or not self.post_service:
+        if self.fixed_pricing or self.delay_energy_heuristic or not self.post_service:
             raw_price = cand.est_price
         else:
             d_delta = (actual_delay - cand.est_delay) / (cand.est_delay + 1e-9)
@@ -596,13 +596,13 @@ def make_default_policies() -> Iterable[Policy]:
             score_label="DoubleAuction",
         ),
         BrokerPolicy(
-            drl_offloading=True,
+            delay_energy_heuristic=True,
             delay_energy_only=True,
             use_deposit=False,
             post_service=False,
             use_reputation=False,
             prepaid=True,
-            score_label="DRL-Offloading",
+            score_label="Delay-Energy",
         ),
         ProposedLyapunovPolicy(use_reputation=False, score_label="NoReputation"),
     ]

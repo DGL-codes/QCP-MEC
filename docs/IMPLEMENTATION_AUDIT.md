@@ -25,10 +25,10 @@ and selected configuration values; it is not a mathematical proof.
 
 ## Baseline Mapping
 
-The comparison includes four literature-inspired proxy baselines, one
-deterministic Delay-Energy heuristic, and QCP ablation variants. The proxy
-rules are adapted to a common MEC environment and do not reproduce the
-original algorithms. The table uses the names displayed in the paper.
+The comparison follows the paper's common MEC simulation setting and includes
+four literature-inspired pricing and selection schemes, the deterministic
+Delay-Energy heuristic, and QCP ablation variants. The table lists the
+implemented rules using the manuscript's method names.
 
 | Baseline | High-level idea | Code flags and behavior |
 |---|---|---|
@@ -36,25 +36,16 @@ original algorithms. The table uses the names displayed in the paper.
 | `Stackelberg-EPRA` | Edge server pricing uses cost, load, and user urgency markup. | `stackelberg_pricing=True`, pre-service settlement, no reputation or deposit. |
 | `TARFO` | Auction-inspired bid and surplus scoring. | `truthful_auction=True`, load-adjusted server-cost bid plus broker commission, pre-service settlement. |
 | `DoubleAuction` | Bid--ask midpoint pricing when bid covers ask, otherwise bid pricing. | `double_auction=True`, negative surplus penalized, pre-service settlement. |
-| `Delay-Energy` | Select the local or edge option minimizing estimated `delay / deadline + 0.25 * energy`. | `drl_offloading=True`, `delay_energy_only=True`, `post_service=False`, `prepaid=True`; fixed pricing, no neural network or policy training. |
+| `Delay-Energy` | Select the local or edge option minimizing estimated `delay / deadline + 0.25 * energy`. | `delay_energy_heuristic=True`, `delay_energy_only=True`, `post_service=False`, `prepaid=True`; fixed pricing, no neural network or policy training. |
 | `NoReputation` | QCP using fixed reputation references in the policy. | `ProposedLyapunovPolicy(use_reputation=False)` substitutes user 0.75 and server 0.80, including user reputation in the post-service default probability; the QCP settlement/deposit structure remains. |
 
 The pricing and auction proxies use prescribed quotation and scoring rules.
 They do not solve a Stackelberg equilibrium or perform global auction clearing,
 and the auction proxies provide no truthfulness guarantee.
 
-## Naming Compatibility
-
-Delay-Energy is a deterministic heuristic without policy training. The legacy
-identifiers `DRL-Offloading` and `drl_offloading` are retained for code and
-result-file compatibility. They do not identify a DRL implementation or a
-reproduction of DODA-DT.
-
-`make_default_policies()` retains `score_label="DRL-Offloading"`, and existing
-CSV files retain that value in the `policy` column. `audit_consistency.py`
-continues to check the same internal name and flags. The plotting script uses
-`DISPLAY_NAMES` to display `Delay-Energy` in legends and heatmap labels.
-This naming update does not change decisions, prices, or recorded metrics.
+`make_default_policies()` uses `score_label="Delay-Energy"` and the
+`delay_energy_heuristic` flag. The audit script, CSV policy column, figure
+ordering, and legends use the same method name directly.
 
 ## Reproducibility Safeguards
 
@@ -66,9 +57,3 @@ This naming update does not change decisions, prices, or recorded metrics.
   the delay advantage is not free.
 - Reference results are regenerated from the current code and can be checked by
   `python verify_outputs.py --results results --reference reference_results`.
-
-## Important Scope Statement
-
-The code supports comparisons with the implemented proxy and heuristic
-baselines and with QCP ablation variants. These results do not establish
-performance against a trained DRL baseline or the original cited algorithms.

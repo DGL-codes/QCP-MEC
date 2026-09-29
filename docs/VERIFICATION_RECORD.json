@@ -29,13 +29,6 @@
     "passed": true,
     "note": "Same runtime; original full trace vs compact-data fallback. Bundled historical PNGs remain unchanged."
   },
-  "unchanged_core_sha256": {
-    "config.py": "a1433873c656489cc8f49ad9f3f48547868bbb954ca9db30ce9d2ebb02eab508",
-    "models.py": "eacba6bcd282ab29ae96857dc5e88eb36fab9c63cda6920529b659ce3b86e0d6",
-    "policies.py": "b9c068cdd615ca80ed373b42b6f260d4d323a6f6e7592b30bb351ddb02a7ed3d",
-    "simulator.py": "4af1492bbff7a07f7b01b52dc3061dc0a2d58d800e86d3fcbec320afcf83b56a",
-    "__init__.py": "9464bc850f5e90687124154f8db8a990cfaf97141ab5e0e1bb235faa24dd9eff"
-  },
   "original_reference_csv_sha256": {
     "ablation_overall_scores.csv": "c8ee0bd09e3a8bd06c4db826ebcf73bf4fd95f2907694c64a72d67b6b0083773",
     "ablation_raw.csv": "c10d21711b75f959c72ed581da3fadab6d9856eab2c8f464b81ada8f213df118",
@@ -207,7 +200,7 @@
         "positive_bad_debt": 0,
         "covered_defaults": 0
       },
-      "DRL-Offloading": {
+      "Delay-Energy": {
         "accepted_edge": 5468,
         "defaulted": 0,
         "positive_bad_debt": 0,
@@ -255,5 +248,67 @@
       "finite outputs",
       "virtual queue recurrences"
     ]
+  },
+  "source_core_sha256": {
+    "config.py": "a1433873c656489cc8f49ad9f3f48547868bbb954ca9db30ce9d2ebb02eab508",
+    "models.py": "eacba6bcd282ab29ae96857dc5e88eb36fab9c63cda6920529b659ce3b86e0d6",
+    "policies.py": "b9c068cdd615ca80ed373b42b6f260d4d323a6f6e7592b30bb351ddb02a7ed3d",
+    "simulator.py": "4af1492bbff7a07f7b01b52dc3061dc0a2d58d800e86d3fcbec320afcf83b56a",
+    "__init__.py": "9464bc850f5e90687124154f8db8a990cfaf97141ab5e0e1bb235faa24dd9eff"
+  },
+  "source_core_hash_note": "These hashes describe the source implementation before policy-identifier normalization; current release checks are recorded separately.",
+  "naming_update": {
+    "date": "2026-09-29",
+    "canonical_policy_name": "Delay-Energy",
+    "canonical_policy_flag": "delay_energy_heuristic",
+    "scope": "Policy and result identifiers, plot labels, and documentation; numerical rules and reference values are preserved.",
+    "validation_status": "passed",
+    "configuration_audit": "passed",
+    "python_syntax_check": "passed",
+    "normalized_policy_ast_comparison": "identical",
+    "reference_csv_files_checked": 21,
+    "reference_csv_numeric_text": "unchanged",
+    "full_default_policy_runs": 21,
+    "full_default_time_slots": 600,
+    "full_default_repetitions": 3,
+    "full_default_reference_csv_files_checked": 5,
+    "full_default_reference_comparison": "passed",
+    "maximum_numeric_absolute_difference": 2.2737367544323206e-13,
+    "numeric_atol": 1e-06,
+    "numeric_rtol": 1e-06,
+    "generated_figures_before_after_byte_comparison": {
+      "figures": 8,
+      "passed": true
+    },
+    "current_core_sha256": {
+      "config.py": "a1433873c656489cc8f49ad9f3f48547868bbb954ca9db30ce9d2ebb02eab508",
+      "models.py": "eacba6bcd282ab29ae96857dc5e88eb36fab9c63cda6920529b659ce3b86e0d6",
+      "policies.py": "a1b1ed1172b8875b7f672037b4ba8b7add2a487df19f2f5940d13a6bf5f87271",
+      "simulator.py": "4af1492bbff7a07f7b01b52dc3061dc0a2d58d800e86d3fcbec320afcf83b56a",
+      "__init__.py": "9464bc850f5e90687124154f8db8a990cfaf97141ab5e0e1bb235faa24dd9eff"
+    },
+    "current_reference_csv_sha256": {
+      "ablation_overall_scores.csv": "c8ee0bd09e3a8bd06c4db826ebcf73bf4fd95f2907694c64a72d67b6b0083773",
+      "ablation_raw.csv": "c10d21711b75f959c72ed581da3fadab6d9856eab2c8f464b81ada8f213df118",
+      "ablation_std.csv": "686e246aca858c4599ae182edacf8aeb0f5876459d59ff8a1f6375a1e3b5dd37",
+      "ablation_summary.csv": "62d495d5bc779a1064089fae537f8d43ade902dd513fbe0a4e118a062512470c",
+      "arrival_sweep_raw.csv": "8ada61e1d8a86848f8275faa62e5a10cf32780cccad346b0bf09711e85250dd9",
+      "arrival_sweep_summary.csv": "0dc9172bb5e21f9d6e01058d3d0d2347b8bc90ef4162ae11a1da898ea35f3dfb",
+      "default_overall_scores.csv": "6718db74df090e86b0cb38c8203d6d06ac7a32834779bf970b6ea5b0d54e760d",
+      "deposit_sweep_raw.csv": "76b97e1a883b58df703e573f86d674c0d59ed37a30da630a30c51f087e2eea7b",
+      "deposit_sweep_summary.csv": "cad9eefad4da8828cbd0ccf674b9f49170257b5f11358f3e1d3254c9391c2c5d",
+      "lyapunov_sweep_raw.csv": "83cbc114d9eee2dee231c32d91fed86e248a0be4abdd2b5d33471d7832d46a92",
+      "lyapunov_sweep_std.csv": "b8f4363925a37f8167eaedd77ba734631ece066c2a991eba1370a1c38e25097e",
+      "lyapunov_sweep_summary.csv": "6aaae315cd74bebf1938740219f2d116bd489bb3767b4344ca2eee070ebc5207",
+      "payment_discipline_summary.csv": "63f1c64fc1386dc037329a67874a71df7d3b8ebf2126da4d0feb99d93ea30989",
+      "reputation_sweep_raw.csv": "c1cf4199932e2e0daf44e4c6d7d09f948ca3a9d661e8d7b83678b85f445f8500",
+      "reputation_sweep_summary.csv": "10f0df51dd490bcd5e44770bc26aa5bd449a5e380a2fe098cc3a619ee1291417",
+      "reservation_sweep_raw.csv": "05757ed50ce098dd67e5d7841871ff53d33b63ff71f2cf783e6584200eb9e2de",
+      "reservation_sweep_std.csv": "4df8f06605dd89cdaab067a395602fdcea793da09ba1a66ea57099438ece8384",
+      "reservation_sweep_summary.csv": "6261e66f02895b80255fab498a2c790d458ba5122f0d7910b8a96208408e0a17",
+      "single_summary.csv": "8709c8341fb849afada5eb39a4b220df17c85fa367fcfb9fd0bb8eb9bb877529",
+      "single_summary_raw.csv": "6047c4d1c8223a29f58f5169cabb3e65364675bd1f862f416a92530d4b959ac9",
+      "single_summary_std.csv": "66243ca8f9945e8e58aca628352dd6541488db476b716897829592148741112e"
+    }
   }
 }
